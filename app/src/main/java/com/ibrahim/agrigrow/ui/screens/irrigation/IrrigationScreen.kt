@@ -34,31 +34,23 @@ data class FertilizerItem(val imageRes: Int, val description: String)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IrrigationScreen(navController: NavController) {
-    val images = listOf(
-        R.drawable.new11, // Image 1
-        R.drawable.irr3,  // Image 2
-        R.drawable.irr4   // Image 3
-    )
+    val staticImageRes = R.drawable.new11 // Static full-screen image
 
-    var currentImageIndex by remember { mutableStateOf(0) }
-
-    // Periodically change the image every 3 seconds
-    LaunchedEffect(key1 = currentImageIndex) {
-        while (true) {
-            delay(3000) // Delay in milliseconds
-            currentImageIndex = (currentImageIndex + 1) % images.size
-        }
-    }
-
-    // Sample data for the cards
     val cardItems = listOf(
-        FertilizerItem(imageRes = R.drawable.irr1, description = "Drip Irrigation: Efficient water delivery directly to roots."),
-        FertilizerItem(imageRes = R.drawable.irr2, description = "Sprinkler Irrigation: Suitable for a wide variety of crops."),
+        FertilizerItem(imageRes = R.drawable.irr3, description = "Drip Irrigation: Efficient water delivery directly to roots."),
+        FertilizerItem(imageRes = R.drawable.irr4, description = "Sprinkler Irrigation: Suitable for a wide variety of crops."),
         FertilizerItem(imageRes = R.drawable.irr3, description = "Surface Irrigation: Best for flat and level fields."),
-        FertilizerItem(imageRes = R.drawable.irr4, description = "Subsurface Irrigation: Ideal for deep-rooted crops.")
+        FertilizerItem(imageRes = R.drawable.irr1, description = "Subsurface Irrigation: Ideal for deep-rooted crops."),
+        FertilizerItem(imageRes = R.drawable.irr7, description = "Center Pivot Irrigation: Automated, ideal for large-scale farming."),
+        FertilizerItem(imageRes = R.drawable.irr5, description = "Furrow Irrigation: Water flows through shallow channels between crop rows."),
+        FertilizerItem(imageRes = R.drawable.irr8, description = "Manual Irrigation: Traditional method using buckets or hoses."),
+        FertilizerItem(imageRes = R.drawable.irr6, description = "Basin Irrigation: Involves flooding flat fields divided into basins."),
+                FertilizerItem(imageRes = R.drawable.irr2, description = "Lateral Move Irrigation: Moves across the field, distributing water evenly.")
+
+
     )
 
-    val spacing = 12.dp
+    val spacing = 16.dp
 
     Scaffold(
         topBar = {
@@ -87,81 +79,83 @@ fun IrrigationScreen(navController: NavController) {
                 .fillMaxSize()
                 .background(Color(0xFFF4F4F4))
                 .padding(paddingValues)
-                .padding(16.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            // Full Screen Image Card
+            // Static full-screen image card
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.4f), // Set the height of the image to take up 40% of the screen height
-                shape = RoundedCornerShape(0.dp), // No corner radius for full screen effect
-                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                    .height(280.dp), // Adjusted for a balanced header
+                shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
             ) {
                 Image(
-                    painter = painterResource(id = images[currentImageIndex]),
+                    painter = painterResource(id = staticImageRes),
                     contentDescription = null,
-                    contentScale = ContentScale.Crop, // Ensures image covers the full area without distortion
-                    modifier = Modifier.fillMaxSize() // Fill the entire space available
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
                 )
             }
 
             Spacer(modifier = Modifier.height(spacing))
 
-            Text(
-                text = "\uD83D\uDCA7 Don’t let your crops dry out—irrigation is the key to consistent growth and healthy yields! \uD83C\uDF31 Whether rain fails or shines, watering your farm ensures plants get the moisture they need. \uD83D\uDEBF Smart irrigation methods save water, boost productivity, and keep your harvests strong. \uD83C\uDF3E Keep your soil alive—irrigate wisely and grow with confidence! ✅",
-                fontSize = 16.sp,
-                color = Color.DarkGray,
-                lineHeight = 20.sp,
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
+            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                Text(
+                    text = "\uD83D\uDCA7 Don’t let your crops dry out—irrigation is the key to consistent growth and healthy yields! \uD83C\uDF31 Whether rain fails or shines, watering your farm ensures plants get the moisture they need. \uD83D\uDEBF Smart irrigation methods save water, boost productivity, and keep your harvests strong. \uD83C\uDF3E Keep your soil alive—irrigate wisely and grow with confidence! ✅",
+                    fontSize = 16.sp,
+                    color = Color(0xFF555555),
+                    lineHeight = 22.sp
+                )
 
-            Spacer(modifier = Modifier.height(spacing))
+                Spacer(modifier = Modifier.height(spacing))
 
-            Text(
-                text = "Ways To Irrigate Your Farm",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF333333),
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+                Text(
+                    text = "Ways To Irrigate Your Farm",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF333333),
+                    modifier = Modifier.padding(bottom = 12.dp)
+                )
 
-            // Two cards side by side in each row
-            for (i in cardItems.indices step 2) {
-                Row(
+                // Two cards per row
+                for (i in cardItems.indices step 2) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = spacing),
+                        horizontalArrangement = Arrangement.spacedBy(spacing)
+                    ) {
+                        FertilizerCard(data = cardItems[i], modifier = Modifier.weight(1f))
+                        if (i + 1 < cardItems.size) {
+                            FertilizerCard(data = cardItems[i + 1], modifier = Modifier.weight(1f))
+                        } else {
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(spacing))
+
+                // Watch button
+                val context = LocalContext.current
+
+                Button(
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/shorts/f-VTieMMFbk?si=Xl5x1kApUV7meXb9"))
+                        context.startActivity(intent)
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = spacing),
-                    horizontalArrangement = Arrangement.spacedBy(spacing)
+                        .height(56.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 6.dp)
                 ) {
-                    FertilizerCard(data = cardItems[i], modifier = Modifier.weight(1f))
-                    if (i + 1 < cardItems.size) {
-                        FertilizerCard(data = cardItems[i + 1], modifier = Modifier.weight(1f))
-                    } else {
-                        Spacer(modifier = Modifier.weight(1f)) // Fill empty space if odd number
-                    }
+                    Text("Watch Irrigation Guide", fontSize = 18.sp, color = Color.White)
                 }
             }
 
-            Spacer(modifier = Modifier.height(spacing))
-
-            // Learn More Button
-            val context = LocalContext.current
-
-            Button(
-                onClick = {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/shorts/f-VTieMMFbk?si=Xl5x1kApUV7meXb9"))
-                    context.startActivity(intent)
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(16.dp),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 6.dp)
-            ) {
-                Text("Watch Irrigation Guide", fontSize = 18.sp, color = Color.White)
-            }
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
@@ -190,9 +184,7 @@ fun FertilizerCard(data: FertilizerItem, modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Column {
             Image(
                 painter = painterResource(id = data.imageRes),
                 contentDescription = null,
@@ -211,4 +203,3 @@ fun FertilizerCard(data: FertilizerItem, modifier: Modifier = Modifier) {
         }
     }
 }
-

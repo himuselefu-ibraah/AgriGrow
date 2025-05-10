@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
 import kotlinx.coroutines.delay
 
@@ -33,18 +34,13 @@ data class Fertilizer(
     val imageResId: Int
 )
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            FertilizerGuideScreen(onBackClick = { finish() })
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FertilizerGuideScreen(onBackClick: () -> Unit) {
+fun FertilizerGuideScreen(
+    navController: NavController,)
+
+     {
     val fertilizers = listOf(
         Fertilizer("DAP", "Promotes strong root growth at planting stage.", R.drawable.img_24),
         Fertilizer("CAN", "Used for top dressing to supply nitrogen.", R.drawable.img_24),
@@ -87,10 +83,15 @@ fun FertilizerGuideScreen(onBackClick: () -> Unit) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Fertilizer Guide", fontWeight = FontWeight.Bold) },
+                title = {
+                    Text("Fertilizer Guide", fontWeight = FontWeight.Bold)
+                },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -104,19 +105,19 @@ fun FertilizerGuideScreen(onBackClick: () -> Unit) {
             NavigationBar(containerColor = Color(0xFF4CAF50)) {
                 NavigationBarItem(
                     selected = true,
-                    onClick = { /* TODO: Navigate to Home */ },
+                    onClick = {  navController.navigate("home") },
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White) },
                     label = { Text("Home", color = Color.White) }
                 )
                 NavigationBarItem(
                     selected = false,
-                    onClick = { /* TODO: Navigate to Settings */ },
+                    onClick = { navController.navigate("set") },
                     icon = { Icon(Icons.Default.Settings, contentDescription = "Settings", tint = Color.White) },
                     label = { Text("Settings", color = Color.White) }
                 )
                 NavigationBarItem(
                     selected = false,
-                    onClick = { /* TODO: Navigate to Profile */ },
+                    onClick = { navController.navigate("profile") },
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile", tint = Color.White) },
                     label = { Text("Profile", color = Color.White) }
                 )

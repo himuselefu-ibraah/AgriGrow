@@ -1,7 +1,7 @@
 package com.ibrahim.agrigrow.navigation
 
+import FarmerBotScreen
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,6 +25,7 @@ import com.ibrahim.agrigrow.ui.screens.auth.RegisterScreen
 import com.ibrahim.agrigrow.ui.screens.cropcalendar.CropCalendarScreen
 import com.ibrahim.agrigrow.ui.screens.cropcalendar.CropDetailScreen
 import com.ibrahim.agrigrow.ui.screens.cropcalendar.CropScreen
+import com.ibrahim.agrigrow.ui.screens.fertilizer.FertilizerCalculatorScreen
 import com.ibrahim.agrigrow.ui.screens.fertilizer.FertilizerGuideScreen
 import com.ibrahim.agrigrow.ui.screens.fertilizer.FertilizerScreen
 import com.ibrahim.agrigrow.ui.screens.health.AnimalHealthScreen
@@ -33,9 +34,12 @@ import com.ibrahim.agrigrow.ui.screens.home.HomeScreen
 import com.ibrahim.agrigrow.ui.screens.irrigation.IrrigationScreen
 import com.ibrahim.agrigrow.ui.screens.pest.PestDiseaseScreen
 import com.ibrahim.agrigrow.ui.screens.pest.PestScreen
+import com.ibrahim.agrigrow.ui.screens.preventive.PreventiveMeasuresScreen
+import com.ibrahim.agrigrow.ui.screens.profile.ProfileScreen
+import com.ibrahim.agrigrow.ui.screens.profit.ProfitMarginCalculatorScreen
+import com.ibrahim.agrigrow.ui.screens.settings.SettingsScreen
 import com.ibrahim.agrigrow.ui.screens.splash.SplashScreen
 import com.ibrahim.agrigrow.ui.screens.splash.WelcomeScreen
-import com.ibrahim.agrigrow.ui.screens.starter.CustomScreen
 import com.ibrahim.agrigrow.ui.screens.weatherupdates.WeatherScreen
 import com.ibrahim.agrigrow.viewmodel.AnimalHealthViewModel
 import com.ibrahim.agrigrow.viewmodel.AnimalHealthViewModelFactory
@@ -95,10 +99,10 @@ fun AppNavHost(
 
         //agri
         composable(ROUT_AGRICULTURE) {
-            AgricultureGuideScreen()
+            AgricultureGuideScreen(navController)
         }
         composable(ROUT_AGRO) {
-            AgroToolsTrainingScreen()
+            AgroToolsTrainingScreen(navController)
         }
         composable(ROUT_TOOL) {
             ToolScreen(navController)
@@ -106,7 +110,7 @@ fun AppNavHost(
 
         //pest
         composable(ROUT_PEST) {
-            PestDiseaseScreen()
+            PestDiseaseScreen(navController)
         }
         composable(ROUT_PE) {
             PestScreen(navController)
@@ -132,11 +136,38 @@ fun AppNavHost(
 
         //fertilizer
         composable(ROUT_FERTILIZER) {
-            FertilizerGuideScreen(onBackClick = { navController.popBackStack() })
+            FertilizerGuideScreen(navController)
         }
         composable(ROUT_FER) {
             FertilizerScreen(navController)
         }
+
+        //calculations
+        composable(ROUT_CALC) {
+            FertilizerCalculatorScreen(navController)
+        }
+        composable(ROUT_PROFIT) {
+            ProfitMarginCalculatorScreen(navController)
+        }
+
+        //prevent
+        composable(ROUT_PREVENT) {
+            PreventiveMeasuresScreen(navController)
+        }
+
+        composable(ROUT_BOT) {
+            FarmerBotScreen(navController)
+        }
+
+        composable(ROUT_PROFILE) {
+            ProfileScreen(navController)
+        }
+
+        composable(ROUT_SETTINGS) {
+            SettingsScreen(navController)
+        }
+
+
 
 
 

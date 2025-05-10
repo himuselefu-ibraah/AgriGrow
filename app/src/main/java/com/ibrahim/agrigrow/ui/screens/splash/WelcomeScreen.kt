@@ -108,7 +108,7 @@ fun WelcomeScreen(onGetStartedClick: () -> Unit) {
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White)
             ) {
                 Text(
-                    text = "Get Started",
+                    text = "Start Your Green Journey",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = Color(0xFF4CAF50)

@@ -29,9 +29,14 @@ fun HomeScreen(navController: NavController) {
         Triple("Weather Updates", Icons.Default.DateRange, "weather"),
         Triple("Agriculture Guide", Icons.Default.DateRange, "agri"),
         Triple("Disease Detection", Icons.Default.DateRange, "Disease Detection"),
-        Triple("View profile", Icons.Default.DateRange, "View Profile"),
         Triple("Know Your Farm Tools", Icons.Default.DateRange, "tool"),
         Triple("Irrigation Guide", Icons.Default.DateRange, "Ir"),
+        Triple("YieldMax Fertilizer Tool", Icons.Default.DateRange, "calc"),
+        Triple("Farm Profit Estimator", Icons.Default.DateRange, "prof"),
+        Triple("Preventive Measures", Icons.Default.DateRange, "prevent"),
+        Triple("Ask Mkulima \uD83D\uDE02", Icons.Default.DateRange, "farmerbot"),
+        Triple("Settings", Icons.Default.DateRange, "set"),
+        Triple("Setup Your Profile", Icons.Default.DateRange, "profile"),
     )
 
     Scaffold(

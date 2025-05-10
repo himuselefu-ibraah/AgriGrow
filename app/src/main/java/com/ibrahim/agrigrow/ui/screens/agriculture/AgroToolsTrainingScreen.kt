@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -22,8 +23,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
 import com.ibrahim.agrigrow.navigation.ROUT_HOME
+import com.ibrahim.agrigrow.navigation.ROUT_PROFILE
+import com.ibrahim.agrigrow.navigation.ROUT_SETTINGS
 import com.ibrahim.agrigrow.ui.theme.newgreen
 
 // Data model
@@ -81,7 +85,7 @@ val complexFarmTools = listOf(
 // Main Composable Screen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AgroToolsTrainingScreen() {
+fun AgroToolsTrainingScreen(navController: NavController) {
     val context = LocalContext.current
     var searchQuery by remember { mutableStateOf("") }
     var selectedIndex by remember { mutableStateOf(0) }
@@ -95,15 +99,20 @@ fun AgroToolsTrainingScreen() {
     Scaffold(
         //TopBar
         topBar = {
-            TopAppBar(
-                title = { Text("Tool Guide") },
+            CenterAlignedTopAppBar(
+                title = {
+                    Text("Tool Guide", fontWeight = FontWeight.Bold)
+                },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back/nav */ }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = newgreen,
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color(0xFF4CAF50),
                     titleContentColor = Color.White,
                     navigationIconContentColor = Color.White
                 )
@@ -120,15 +129,15 @@ fun AgroToolsTrainingScreen() {
                     label = { Text("Home") },
                     selected = selectedIndex == 0,
                     onClick = { selectedIndex = 0
-                       // navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
+                    icon = { Icon(Icons.Default.Settings, contentDescription = "Favorites") },
+                    label = { Text("Settings") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        //  navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_SETTINGS)
                     }
                 )
                 NavigationBarItem(
@@ -136,7 +145,7 @@ fun AgroToolsTrainingScreen() {
                     label = { Text("Profile") },
                     selected = selectedIndex == 2,
                     onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_PROFILE)
                     }
                 )
 

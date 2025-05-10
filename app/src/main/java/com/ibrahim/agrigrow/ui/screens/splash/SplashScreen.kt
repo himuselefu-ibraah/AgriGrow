@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ibrahim.agrigrow.R
 import com.ibrahim.agrigrow.navigation.ROUT_LOGIN
+import com.ibrahim.agrigrow.navigation.ROUT_WELCOME
 import com.ibrahim.agrigrow.ui.theme.newgreen
 
 
@@ -41,7 +42,7 @@ fun SplashScreen(navController: NavController){
     coroutine.launch {
 
         delay(2000)
-        navController.navigate(ROUT_LOGIN)
+        navController.navigate(ROUT_WELCOME)
 
     }
 

@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
 import com.ibrahim.agrigrow.navigation.ROUT_HOME
+import com.ibrahim.agrigrow.navigation.ROUT_PROFILE
+import com.ibrahim.agrigrow.navigation.ROUT_SETTINGS
 import com.ibrahim.agrigrow.ui.theme.newgreen
 import com.ibrahim.agrigrow.viewmodel.CropCalendarViewModel
 
@@ -38,15 +41,20 @@ fun CropCalendarScreen(viewModel: CropCalendarViewModel, navController: NavContr
     Scaffold(
         //TopBar
         topBar = {
-            TopAppBar(
-                title = { Text("Crop Calendar") },
+            CenterAlignedTopAppBar(
+                title = {
+                    Text("Crop Calendar", fontWeight = FontWeight.Bold)
+                },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back/nav */ }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = newgreen,
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color(0xFF4CAF50),
                     titleContentColor = Color.White,
                     navigationIconContentColor = Color.White
                 )
@@ -67,19 +75,19 @@ fun CropCalendarScreen(viewModel: CropCalendarViewModel, navController: NavContr
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
+                    icon = { Icon(Icons.Default.Settings, contentDescription = "Settings") },
+                    label = { Text("Settings") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        //  navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_SETTINGS)
                     }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
+                    label = { Text("set") },
                     selected = selectedIndex == 2,
                     onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_PROFILE)
                     }
                 )
 

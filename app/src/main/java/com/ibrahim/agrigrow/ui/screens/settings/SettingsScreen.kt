@@ -1,74 +1,106 @@
 package com.ibrahim.agrigrow.ui.screens.settings
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.compose.rememberNavController
-import com.ibrahim.agrigrow.navigation.ROUT_HOME
-import com.ibrahim.agrigrow.ui.theme.AgriGrowTheme
-import kotlinx.coroutines.launch
+import androidx.navigation.NavController
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    navController: NavHostController,
-    isDarkTheme: Boolean,
-    onThemeToggle: (Boolean) -> Unit
+    navController: NavController,
+    onBackClick: () -> Unit = {},
+    onEditProfileClick: () -> Unit = {},
+    onPrivacyPolicyClick: () -> Unit = {},
+    onHelpSupportClick: () -> Unit = {},
+    onLogoutClick: () -> Unit = {}
 ) {
-    // Column layout for the settings
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Title for Settings
-        Text(
-            text = "Settings",
-            style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.padding(bottom = 32.dp)
-        )
+    var notificationsEnabled by remember { mutableStateOf(true) }
 
-        // Toggle for Dark/Light Theme
-        Text(text = "Enable Dark Theme:")
-        Switch(
-            checked = isDarkTheme,
-            onCheckedChange = {
-                // Trigger theme toggle
-                onThemeToggle(it)
-            },
-            modifier = Modifier.padding(vertical = 16.dp)
-        )
-
-        // Spacer for spacing
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Button to navigate back to Home
-        Button(onClick = {
-            navController.navigate(ROUT_HOME) {
-                popUpTo(ROUT_HOME) { inclusive = true }
+    Scaffold(
+        //TopBar
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text("Settings", fontWeight = FontWeight.Bold)
+                },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color(0xFF4CAF50),
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                )
+            )
+        },
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            // Notification toggle row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { notificationsEnabled = !notificationsEnabled },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(Icons.Default.Notifications, contentDescription = null)
+                Spacer(modifier = Modifier.width(16.dp))
+                Text("Enable Notifications", modifier = Modifier.weight(1f))
+                Switch(checked = notificationsEnabled, onCheckedChange = { notificationsEnabled = it })
             }
-        }) {
-            Text(text = "Go Back to Home")
+
+            Divider()
+
+            // Setting items with navigation
+            SettingsItem(icon = Icons.Default.Edit, text = "Edit Profile", onClick = { navController.navigate("profile") })
+            SettingsItem(icon = Icons.Default.ThumbUp, text = "Privacy Policy", onClick = { navController.navigate("privacy_policy") })
+            SettingsItem(icon = Icons.Default.ThumbUp, text = "Help & Support", onClick = { navController.navigate("help_support") })
+            SettingsItem(icon = Icons.Default.ExitToApp, text = "Logout", textColor = Color.Red, onClick = onLogoutClick)
         }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun SettingsScreenPreview() {
-    AgriGrowTheme(darkTheme = false) {
-        SettingsScreen(
-            navController = rememberNavController(),
-            isDarkTheme = false,
-            onThemeToggle = {}
-        )
+fun SettingsItem(
+    icon: ImageVector,
+    text: String,
+    textColor: Color = Color.Black,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(icon, contentDescription = null, tint = textColor)
+        Spacer(modifier = Modifier.width(16.dp))
+        Text(text = text, color = textColor, style = MaterialTheme.typography.bodyLarge)
     }
 }
-
 

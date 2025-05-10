@@ -54,39 +54,7 @@ fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
             )
         },
 
-        //BottomBar
-        bottomBar = {
-            NavigationBar(
-                containerColor = newgreen
-            ){
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    label = { Text("Home") },
-                    selected = selectedIndex == 0,
-                    onClick = { selectedIndex = 0
-                        // navController.navigate(ROUT_HOME)
 
-                    }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
-                    selected = selectedIndex == 1,
-                    onClick = { selectedIndex = 1
-                        //  navController.navigate(ROUT_HOME)
-                    }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
-                    selected = selectedIndex == 2,
-                    onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
-                    }
-                )
-
-            }
-        },
     ) { padding ->
         Column(
             modifier = Modifier

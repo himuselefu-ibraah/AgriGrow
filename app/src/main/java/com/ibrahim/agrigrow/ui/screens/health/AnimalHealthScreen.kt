@@ -55,21 +55,24 @@ fun AnimalHealthScreen(
             NavigationBar(containerColor = Color(0xFF4CAF50)) {
                 NavigationBarItem(
                     selected = selectedItem == 0,
-                    onClick = { selectedItem = 0 /* navController.navigate("home") */ },
+                    onClick = { selectedItem = 0
+                        navController.navigate("home")  },
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White) },
                     label = { Text("Home", color = Color.White) }
                 )
                 NavigationBarItem(
                     selected = selectedItem == 1,
-                    onClick = { selectedItem = 1 /* navController.navigate("profile") */ },
-                    icon = { Icon(Icons.Default.Person, contentDescription = "Profile", tint = Color.White) },
-                    label = { Text("Profile", color = Color.White) }
+                    onClick = { selectedItem = 1
+                        navController.navigate("set")  },
+                    icon = { Icon(Icons.Default.Settings, contentDescription = "Settings", tint = Color.White) },
+                    label = { Text("Settings", color = Color.White) }
                 )
                 NavigationBarItem(
                     selected = selectedItem == 2,
-                    onClick = { selectedItem = 2 /* navController.navigate("settings") */ },
-                    icon = { Icon(Icons.Default.Settings, contentDescription = "Settings", tint = Color.White) },
-                    label = { Text("Settings", color = Color.White) }
+                    onClick = { selectedItem = 2
+                        navController.navigate("profile")  },
+                    icon = { Icon(Icons.Default.Person, contentDescription = "Profile", tint = Color.White) },
+                    label = { Text("Profile", color = Color.White) }
                 )
             }
         }

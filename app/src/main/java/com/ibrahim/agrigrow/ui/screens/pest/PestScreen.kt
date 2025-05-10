@@ -1,9 +1,11 @@
 package com.ibrahim.agrigrow.ui.screens.pest
 
-import androidx.compose.animation.core.animateFloatAsState
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,230 +13,197 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
-import kotlinx.coroutines.launch
+
+data class PestInfo(
+    val title: String,
+    val subtitle: String,
+    val imageResId: Int,
+    val videoUrl: String
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PestScreen(navController: NavController) {
-    val cardItems = listOf(
-        R.drawable.on2,
-        R.drawable.on3,
-        R.drawable.on4,
-        R.drawable.no1
+    val context = LocalContext.current
+    val scrollState = rememberScrollState()
+
+    val sectionedPests = listOf(
+        listOf(
+            PestInfo("Virus", "Apple Mosaic", R.drawable.pest1, "https://www.youtube.com/watch?v=video1"),
+            PestInfo("Fungus", "Rust Disease", R.drawable.pest2, "https://www.youtube.com/watch?v=video2"),
+            PestInfo("Insect", "Aphids", R.drawable.pest3, "https://www.youtube.com/watch?v=video2")
+        ),
+        listOf(
+            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://www.youtube.com/watch?v=video3"),
+            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Dead Arm", R.drawable.pest5, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Blossom Blight", R.drawable.pest4, "https://www.youtube.com/watch?v=video4")
+        ),
+        listOf(
+            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://www.youtube.com/watch?v=video5"),
+            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Peach Scab", R.drawable.peach, "https://www.youtube.com/watch?v=video6")
+        ),
+        listOf(
+            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://www.youtube.com/watch?v=video5"),
+            PestInfo("Fungus", "Blossom Blight and Fruit Rot", R.drawable.blosom, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Peach Scab", R.drawable.peach, "https://www.youtube.com/watch?v=video6"),
+            PestInfo("Fungus", "Botrytis Blight", R.drawable.bot, "https://www.youtube.com/watch?v=video7"),
+            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://www.youtube.com/watch?v=video8")
+        ),
+        listOf(
+            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://www.youtube.com/watch?v=video5"),
+            PestInfo("Fungus", "Blossom Blight and Fruit Rot", R.drawable.blosom, "https://www.youtube.com/watch?v=video4"),
+            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://www.youtube.com/watch?v=video3"),
+            PestInfo("Fungus", "Botrytis Blight", R.drawable.bot, "https://www.youtube.com/watch?v=video7"),
+            PestInfo("Fungus", "Anthracnose of Almond", R.drawable.anthracnose, "https://www.youtube.com/watch?v=video7")
+        )
     )
 
-    val spacing = 12.dp
+    val sectionTitles = listOf(
+        "Seedling Stage",
+        "Vegetative Stage",
+        "Flowering Stage",
+        "Fruiting Stage",
+        "Harvesting Stage "
+    )
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = {
-                    Text("Pest and Diseases", fontWeight = FontWeight.Bold)
-                },
+                title = { Text("Pest and Diseases", fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back"
-                        )
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color(0xFF4CAF50),
-                    titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White
+                    titleContentColor = Color.White
                 )
             )
+        },
+        bottomBar = {
+            Button(
+                onClick = {
+                    navController.navigate("pest")
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .navigationBarsPadding(),
+                shape = RoundedCornerShape(6.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
+            ) {
+                Text("Learn More on Pests", color = Color.White, fontSize = 18.sp)
+            }
         }
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFF4F4F4))
                 .padding(paddingValues)
                 .padding(16.dp)
-                .verticalScroll(rememberScrollState()) // Makes content scrollable
+                .verticalScroll(scrollState)
+                .background(Color(0xFFF4F4F4))
         ) {
-            // Top Card with Image
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp),
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            ) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.new11),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(spacing))
-
-            // pest Description
             Text(
-                text = "To prevent pests \uD83D\uDC1B, rotate crops \uD83C\uDF31, keep the farm clean \uD83E\uDDF9, and attract natural predators \uD83D\uDC1E. Use organic sprays like neem oil \uD83C\uDF3F, avoid overwatering \uD83D\uDEB1, and space plants well \uD83D\uDCCF. Store harvests properly \uD83E\uDDFA and check crops often \uD83D\uDC40 to catch pests early.",
+                text = "Protect your crops from pests and viruses. Learn how to identify and manage plant diseases with expert videos.",
                 fontSize = 16.sp,
                 color = Color.DarkGray,
-                lineHeight = 20.sp,
-                modifier = Modifier.padding(horizontal = 4.dp)
+                modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            Spacer(modifier = Modifier.height(spacing))
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                // Card 1: Image + Text (Split)
-                Box(
-                    modifier = Modifier
-                        .width(160.dp)
-                        .height(220.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(Color.White)
-                        .shadow(4.dp, RoundedCornerShape(12.dp))
-                ) {
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        Image(
-                            painter = painterResource(id = R.drawable.img_11),
-                            contentDescription = "Pest Image",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f),
-                            contentScale = ContentScale.Crop
-                        )
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f)
-                                .padding(8.dp)
-                        ) {
-                            Text(
-                                text = "Regularly controlling pests helps protect your crops from damage, ensuring a healthier harvest.\n" +
-                                        "\nHealthy crops free from pests produce better yields.",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                                color = Color.Black
-                            )
-
-                        }
+            sectionedPests.forEachIndexed { index, pests ->
+                SectionTitleWithCards(
+                    sectionTitle = sectionTitles.getOrNull(index) ?: "Pest Section ${index + 1}",
+                    pests = pests,
+                    onCardClick = { videoUrl ->
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+                        context.startActivity(intent)
                     }
-                }
-
-                // Card 2: Full Image
-                Box(
-                    modifier = Modifier
-                        .width(160.dp)
-                        .height(220.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .shadow(4.dp, RoundedCornerShape(12.dp))
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.no3), // Replace with another image
-                        contentDescription = "Full Image Card",
-                        modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop
-                    )
-                }
-            }
-
-
-            Text(
-                text = "Don't Allow Pests to Control",
-                fontSize = 22.sp,
-                color = Color(0xFF333333),
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-
-            // 4 Cards: 2 per row
-            for (i in 0 until 2) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = spacing / 2),
-                    horizontalArrangement = Arrangement.spacedBy(spacing)
-                ) {
-                    CustomImageCard(cardItems[i * 2], Modifier.weight(1f))
-                    CustomImageCard(cardItems[i * 2 + 1], Modifier.weight(1f))
-                }
-            }
-
-            Spacer(modifier = Modifier.height(spacing))
-
-            // Bottom Button
-            Button(
-                onClick = { navController.navigate("pest")},
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(16.dp),
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 6.dp)
-            ) {
-                Text(text = "Learn More on Pests", fontSize = 18.sp, color = Color.White)
+                )
+                Divider(
+                    color = Color.Gray,
+                    thickness = 1.dp,
+                    modifier = Modifier.padding(vertical = 12.dp)
+                )
             }
         }
     }
 }
 
 @Composable
-fun CustomImageCard(imageRes: Int, modifier: Modifier) {
-    var clicked by remember { mutableStateOf(false) }
-    val scale by animateFloatAsState(
-        targetValue = if (clicked) 0.95f else 1f,
-        label = "cardScale"
+fun SectionTitleWithCards(sectionTitle: String, pests: List<PestInfo>, onCardClick: (String) -> Unit) {
+    Text(
+        text = sectionTitle,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(bottom = 8.dp)
     )
 
-    val coroutineScope = rememberCoroutineScope()
-
-    Card(
-        modifier = modifier
-            .height(180.dp)
-            .scale(scale)
-            .clickable {
-                clicked = true
-                coroutineScope.launch {
-                    kotlinx.coroutines.delay(120)
-                    clicked = false
-                }
-            },
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Image(
-            painter = painterResource(id = imageRes),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
+        pests.forEach { pest ->
+            VirusCard(pestInfo = pest, onClick = { onCardClick(pest.videoUrl) })
+        }
     }
 }
+
+@Composable
+fun VirusCard(pestInfo: PestInfo, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .width(180.dp)
+            .height(220.dp)
+            .clickable { onClick() }
+            .shadow(6.dp, RoundedCornerShape(16.dp)),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
+    ) {
+        Column {
+            Image(
+                painter = painterResource(id = pestInfo.imageResId),
+                contentDescription = pestInfo.title,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(110.dp)
+                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
+                contentScale = ContentScale.Crop
+            )
+            Column(modifier = Modifier.padding(12.dp)) {
+                Text(pestInfo.title, fontWeight = FontWeight.SemiBold, fontSize = 16.sp, color = Color.Black)
+                Text(pestInfo.subtitle, fontWeight = FontWeight.ExtraBold, fontSize = 14.sp, color = Color(0xFF4CAF50))
+            }
+        }
+    }
+}
+
+
+
+
+
 
 

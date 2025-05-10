@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -17,17 +18,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
 import com.ibrahim.agrigrow.model.PestDisease
 import com.ibrahim.agrigrow.navigation.ROUT_HOME
+import com.ibrahim.agrigrow.navigation.ROUT_PROFILE
+import com.ibrahim.agrigrow.navigation.ROUT_SETTINGS
 import com.ibrahim.agrigrow.repository.PestDiseaseRepository
 import com.ibrahim.agrigrow.ui.theme.newgreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PestDiseaseScreen() {
+fun PestDiseaseScreen(
+    navController: NavController
+) {
     val context = LocalContext.current
     val repository = remember { PestDiseaseRepository(context) }
     val pestList = remember { mutableStateListOf<PestDisease>() }
@@ -46,21 +53,25 @@ fun PestDiseaseScreen() {
     Scaffold(
         //TopBar
         topBar = {
-            TopAppBar(
-                title = { Text("Pest and Diseases") },
+            CenterAlignedTopAppBar(
+                title = {
+                    Text("Explore On Pests", fontWeight = FontWeight.Bold)
+                },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back/nav */ }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = newgreen,
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color(0xFF4CAF50),
                     titleContentColor = Color.White,
                     navigationIconContentColor = Color.White
                 )
             )
         },
-
         //BottomBar
         bottomBar = {
             NavigationBar(
@@ -71,16 +82,16 @@ fun PestDiseaseScreen() {
                     label = { Text("Home") },
                     selected = selectedIndex == 0,
                     onClick = { selectedIndex = 0
-                         // navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_HOME)
 
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
+                    icon = { Icon(Icons.Default.Settings, contentDescription = "set") },
+                    label = { Text("Settings") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        //  navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_SETTINGS)
                     }
                 )
                 NavigationBarItem(
@@ -88,7 +99,7 @@ fun PestDiseaseScreen() {
                     label = { Text("Profile") },
                     selected = selectedIndex == 2,
                     onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
+                          navController.navigate(ROUT_PROFILE)
                     }
                 )
 

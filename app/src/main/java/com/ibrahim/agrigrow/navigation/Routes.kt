@@ -28,6 +28,11 @@ const val ROUT_WELCOME = "welcome"
 const val ROUT_FERTILIZER = "fertilizer"
 const val ROUT_FER = "fer"
 
+//
+const val ROUT_CALC = "calc"
+const val ROUT_PROFIT = "prof"
+
+
 //pest
 const val ROUT_PEST = "pest"
 const val ROUT_PE = "pe"
@@ -41,6 +46,17 @@ const val ROUT_ANIMAL = "animal"
 
 //settings
 const val ROUT_SETTINGS = "set"
+
+
+const val ROUT_BOT = "farmerbot"
+
+//preventive measures
+const val ROUT_PREVENT = "prevent"
+
+
+const val ROUT_PROFILE = "profile"
+
+
 
 
 

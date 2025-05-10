@@ -1,9 +1,7 @@
 package com.ibrahim.agrigrow.ui.screens.cropcalendar
 
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,12 +9,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -26,19 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CropScreen(navController: NavController) {
-    val cardItems = listOf(
-        R.drawable.on2,
-        R.drawable.on3,
-        R.drawable.on4,
-        R.drawable.no1
-    )
-
     val spacing = 12.dp
 
     Scaffold(
@@ -71,18 +59,7 @@ fun CropScreen(navController: NavController) {
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()) // Makes content scrollable
         ) {
-            // Top Card with Swapping Images (with smooth fade)
-            val images = listOf(R.drawable.anime10, R.drawable.he1) // Add your second image
-            var currentImageIndex by remember { mutableStateOf(0) }
-            val alpha by animateFloatAsState(targetValue = if (currentImageIndex == 0) 1f else 0f)
-
-            LaunchedEffect(Unit) {
-                while (true) {
-                    delay(3000) // Switch image every 3 seconds
-                    currentImageIndex = (currentImageIndex + 1) % images.size
-                }
-            }
-
+            // Top Card with a Single Image (No Swapping)
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -95,12 +72,10 @@ fun CropScreen(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Image(
-                        painter = painterResource(id = images[currentImageIndex]),
+                        painter = painterResource(id = R.drawable.anime10), // Single Image Here
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .alpha(alpha) // Apply fade animation
+                        modifier = Modifier.fillMaxSize()
                     )
                 }
             }
@@ -194,3 +169,4 @@ fun CropScreen(navController: NavController) {
         }
     }
 }
+
