@@ -38,6 +38,8 @@ import com.ibrahim.agrigrow.ui.screens.pest.PestScreen
 import com.ibrahim.agrigrow.ui.screens.preventive.PreventiveMeasuresScreen
 import com.ibrahim.agrigrow.ui.screens.profile.ProfileScreen
 import com.ibrahim.agrigrow.ui.screens.profit.ProfitMarginCalculatorScreen
+import com.ibrahim.agrigrow.ui.screens.settings.HelpSupportScreen
+import com.ibrahim.agrigrow.ui.screens.settings.PrivacyPolicyScreen
 import com.ibrahim.agrigrow.ui.screens.settings.SettingsScreen
 import com.ibrahim.agrigrow.ui.screens.splash.SplashScreen
 import com.ibrahim.agrigrow.ui.screens.splash.WelcomeScreen
@@ -166,6 +168,12 @@ fun AppNavHost(
 
         composable(ROUT_SETTINGS) {
             SettingsScreen(navController)
+        }
+        composable(ROUT_PRIVACY) {
+            PrivacyPolicyScreen(navController)
+        }
+        composable(ROUT_HELP) {
+            HelpSupportScreen(navController)
         }
 
         composable(ROUT_DETECT) {

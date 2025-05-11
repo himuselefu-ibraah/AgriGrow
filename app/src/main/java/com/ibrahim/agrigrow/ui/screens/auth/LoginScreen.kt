@@ -165,7 +165,7 @@ fun LoginScreen(
                         }
                     },
                     modifier = Modifier.fillMaxSize(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                     shape = RoundedCornerShape(12.dp)
                 ) {
                     Text("Login", color = Color.White)

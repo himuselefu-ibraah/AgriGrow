@@ -87,7 +87,7 @@ fun DiseaseDetectionRedirectScreen(
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("set") },
+                    label = { Text("Profile") },
                     selected = selectedIndex == 2,
                     onClick = { selectedIndex = 2
                         navController.navigate(ROUT_PROFILE)

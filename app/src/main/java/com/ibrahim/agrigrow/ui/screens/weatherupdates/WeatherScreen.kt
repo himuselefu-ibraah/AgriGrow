@@ -100,7 +100,7 @@ fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
             Button(
                 onClick = { viewModel.fetchWeather(city, apiKey) },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
                 shape = RoundedCornerShape(12.dp)
             ) {
                 Text("Get Weather")

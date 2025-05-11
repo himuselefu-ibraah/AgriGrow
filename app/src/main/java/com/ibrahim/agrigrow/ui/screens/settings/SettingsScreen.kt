@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.*
@@ -77,9 +78,9 @@ fun SettingsScreen(
 
             // Setting items with navigation
             SettingsItem(icon = Icons.Default.Edit, text = "Edit Profile", onClick = { navController.navigate("profile") })
-            SettingsItem(icon = Icons.Default.ThumbUp, text = "Privacy Policy", onClick = { navController.navigate("privacy_policy") })
-            SettingsItem(icon = Icons.Default.ThumbUp, text = "Help & Support", onClick = { navController.navigate("help_support") })
-            SettingsItem(icon = Icons.Default.ExitToApp, text = "Logout", textColor = Color.Red, onClick = onLogoutClick)
+            SettingsItem(icon = Icons.Default.Info, text = "Privacy Policy", onClick = { navController.navigate("pri") })
+            SettingsItem(icon = Icons.Default.Info, text = "Help & Support", onClick = { navController.navigate("he") })
+            SettingsItem(icon = Icons.Default.ExitToApp, text = "Logout", textColor = Color.Red, onClick = { navController.navigate("Login") })
         }
     }
 }

@@ -46,6 +46,8 @@ const val ROUT_ANIMAL = "animal"
 
 //settings
 const val ROUT_SETTINGS = "set"
+const val ROUT_PRIVACY = "pri"
+const val ROUT_HELP = "he"
 
 
 const val ROUT_BOT = "farmerbot"
