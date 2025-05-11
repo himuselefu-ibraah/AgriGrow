@@ -32,6 +32,7 @@ import com.ibrahim.agrigrow.ui.screens.health.AnimalHealthScreen
 import com.ibrahim.agrigrow.ui.screens.health.AnimalScreen
 import com.ibrahim.agrigrow.ui.screens.home.HomeScreen
 import com.ibrahim.agrigrow.ui.screens.irrigation.IrrigationScreen
+import com.ibrahim.agrigrow.ui.screens.pest.DiseaseDetectionRedirectScreen
 import com.ibrahim.agrigrow.ui.screens.pest.PestDiseaseScreen
 import com.ibrahim.agrigrow.ui.screens.pest.PestScreen
 import com.ibrahim.agrigrow.ui.screens.preventive.PreventiveMeasuresScreen
@@ -165,6 +166,10 @@ fun AppNavHost(
 
         composable(ROUT_SETTINGS) {
             SettingsScreen(navController)
+        }
+
+        composable(ROUT_DETECT) {
+            DiseaseDetectionRedirectScreen(navController)
         }
 
 

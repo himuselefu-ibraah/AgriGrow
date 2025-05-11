@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ibrahim.agrigrow.R
 import com.ibrahim.agrigrow.data.ProfileDatabaseHelper
+import com.ibrahim.agrigrow.data.UserProfile
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,39 +29,40 @@ fun ProfileScreen(navController: NavController) {
     val context = LocalContext.current
     val dbHelper = remember { ProfileDatabaseHelper(context) }
 
+    val profileImages = listOf(R.drawable.fm1, R.drawable.fm2, R.drawable.fm3)
+
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
     var selectedImageId by remember { mutableStateOf(0) }
+    var savedProfile by remember { mutableStateOf<UserProfile?>(null) }
 
-    val profileImages = listOf(
-        R.drawable.new2,
-        R.drawable.new1,
-        R.drawable.new3
-    )
+    // Load existing profile once
+    LaunchedEffect(Unit) {
+        savedProfile = dbHelper.getProfile()
+        savedProfile?.let {
+            name = it.name
+            email = it.email
+            phone = it.phone
+            selectedImageId = it.imageId
+        }
+    }
 
     Scaffold(
-        //TopBar
         topBar = {
             CenterAlignedTopAppBar(
-                title = {
-                    Text("Profile Setup", fontWeight = FontWeight.Bold)
-                },
+                title = { Text("Profile Setup", fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back"
-                        )
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color(0xFF4CAF50),
-                    titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White
+                    titleContentColor = Color.White
                 )
             )
-        },
+        }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -70,15 +72,33 @@ fun ProfileScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Choose Profile Picture", style = MaterialTheme.typography.titleLarge)
+            Text("Your Saved Profile", style = MaterialTheme.typography.titleLarge)
+
+            savedProfile?.let { profile ->
+                Image(
+                    painter = painterResource(id = profile.imageId),
+                    contentDescription = "Saved Profile Pic",
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clip(CircleShape)
+                        .border(2.dp, Color.Green, CircleShape)
+                )
+                Text("Name: ${profile.name}")
+                Text("Email: ${profile.email}")
+                Text("Phone: ${profile.phone}")
+            } ?: Text("No profile saved yet.")
+
+            Divider(thickness = 1.dp)
+
+            Text("Update Profile", style = MaterialTheme.typography.titleMedium)
 
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                profileImages.forEach { imageId: Int ->
+                profileImages.forEach { imageId ->
                     Image(
                         painter = painterResource(id = imageId),
                         contentDescription = "Profile Pic",
                         modifier = Modifier
-                            .size(80.dp)
+                            .size(70.dp)
                             .clip(CircleShape)
                             .border(
                                 3.dp,
@@ -97,7 +117,8 @@ fun ProfileScreen(navController: NavController) {
             Button(
                 onClick = {
                     if (selectedImageId != 0) {
-                        dbHelper.saveProfile(name, email, phone, selectedImageId)
+                        dbHelper.saveOrUpdateProfile(name, email, phone, selectedImageId)
+                        savedProfile = dbHelper.getProfile() // Immediately refresh view
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
@@ -108,6 +129,8 @@ fun ProfileScreen(navController: NavController) {
         }
     }
 }
+
+
 
 
 

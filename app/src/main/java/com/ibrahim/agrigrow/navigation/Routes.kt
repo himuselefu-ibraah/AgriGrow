@@ -57,6 +57,9 @@ const val ROUT_PREVENT = "prevent"
 const val ROUT_PROFILE = "profile"
 
 
+const val ROUT_DETECT = "detect"
+
+
 
 
 

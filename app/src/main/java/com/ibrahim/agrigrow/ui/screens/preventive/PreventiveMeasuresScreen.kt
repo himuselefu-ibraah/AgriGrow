@@ -91,35 +91,122 @@ fun WeekContent(
     requester: BringIntoViewRequester,
     coroutineScope: CoroutineScope
 ) {
+    // Dynamically set card data based on the week
     val cardDataList = when (week) {
+        1 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent Leaf hoppers in your plants",
+                extraTips = "Use Insecticidal Soap or Neem Oil.\nIntroduce Natural Predators.\n" +
+                        "Remove Weeds and Debris.",
+                imageResId = R.drawable.hopper,
+                fullDialogText = " Leaf hoppers are small, winged insects that feed on plant sap by piercing plant cells with their needle-like mouthparts. They are often green or yellow and can cause significant damage to crops by causing leaf curling, yellowing, and stunted growth."
+            )
+        )
         2 -> listOf(
             PreventiveCardData(
-                title = "Use Organic Pesticides",
-                description = "Use organic pesticides to reduce chemical exposure.",
-                extraTips = "Apply weekly.\nMonitor effects closely.",
-                imageResId = R.drawable.no3,
-                fullDialogText = "Organic pesticides are eco-friendly alternatives to chemicals. They reduce environmental impact and help maintain soil health.\n\nExtra Tips:\n- Use neem or garlic sprays\n- Monitor pest levels weekly\n- Avoid overapplication"
+                title = "Preventive Measure",
+                description = "Prevent Aphids in your plants",
+                extraTips = "Encourage Natural Predators.\nMonitor effects closely.\n" +
+                        "Use Reflective Mulch or Barriers",
+                imageResId = R.drawable.aphid,
+                fullDialogText = "To prevent aphids, encourage natural predators like ladybugs and lacewings, which feed on them. Regularly inspect plants for aphid infestations and use neem oil or insecticidal soap as a treatment if needed."
             ),
             PreventiveCardData(
-                title = "Crop Rotation",
-                description = "Rotate crops regularly to prevent soil pests.",
-                extraTips = "Rotate every season.\nImprove soil fertility.",
-                imageResId = R.drawable.no3,
-                fullDialogText = "Crop rotation interrupts pest cycles and enhances nutrient balance.\n\nExtra Tips:\n- Change crop family every season\n- Alternate root and leafy crops\n- Add legumes to restore nitrogen"
-            ),
-
+                title = "Preventive Measure",
+                description = "Prevent Leaf miners in your plants.",
+                extraTips = "Remove Affected Leaves.\nIntroduce Beneficial Insects.\n" +
+                        "Use Row Covers.",
+                imageResId = R.drawable.miner,
+                fullDialogText = "To prevent leaf miners \uD83E\uDEB2, regularly inspect leaves and remove any that show winding trails or blotchy patterns \uD83C\uDF43. Use neem oil or insecticidal soap to disrupt their life cycle naturally \uD83E\uDDF4. Encourage beneficial insects like parasitic wasps \uD83D\uDC1D that prey on leaf miner larvae."
+            )
         )
+        3 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent Bean common Mosaic virus on your Plants",
+                extraTips = "Use Virus-Free Seeds \uD83C\uDF31.\nRemove Infected Plants ❌.\n" +
+                        "Practice Crop Rotation.",
+                imageResId = R.drawable.mosa,
+                fullDialogText = "Bean Mosaic Virus is a plant disease that causes mottled yellow-green patterns on leaves, stunted growth, and reduced yields. It is primarily spread by aphids and through infected seeds."
+            )
+        )
+        4 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent Flea beetles in your Crops.",
+                extraTips = "Apply Diatomaceous Earth \uD83C\uDF3E.\nKeep Garden Clean \uD83E\uDDF9.\n" +
+                        "Plant Trap Crops .",
+                imageResId = R.drawable.flee,
+                fullDialogText = "Flea beetles are small, jumping insects that chew tiny holes in leaves, often damaging young plants. To prevent them, use row covers, keep the garden clean, and apply natural deterrents like diatomaceous earth"
+            )
+        )
+        5 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent Cercorspora leaf spot in your plants.",
+                extraTips = "Remove Infected Leaves.",
+                imageResId = R.drawable.spora,
+                fullDialogText = "Cercospora Leaf Spot is a fungal disease that causes small, dark spots on leaves, leading to yellowing and early leaf drop. It spreads quickly in warm, humid conditions, especially with overhead watering. To prevent it, use disease-free seeds, water at the base, and remove infected leaves promptly"
+            )
+        )
+        6 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent anthracnose in your plants.",
+                extraTips = "Remove Infected Leaves.",
+                imageResId = R.drawable.anthracnose,
+                fullDialogText = "Anthracnose is a fungal disease that causes dark, sunken spots on leaves, stems, and fruits, often leading to plant wilting or dieback. It thrives in wet, humid conditions and spreads through splashing water and infected debris. To prevent it, use resistant varieties, avoid overhead watering, and remove infected plant parts quickly."
+            )
+        )
+        7 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent blister beetles in your plants.",
+                extraTips = "Remove Infected Leaves.",
+                imageResId = R.drawable.bl,
+                fullDialogText = "Blister beetles are plant-eating insects that can defoliate crops and release a toxic chemical harmful to livestock. They often appear in large groups and feed on leaves, flowers, and pods. To prevent them, handpick beetles early, use row covers, and maintain weed-free fields to reduce attraction."
+            )
+        )
+        8 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent spider mites in your plants.",
+                extraTips = "Remove Infected Leaves.",
+                imageResId = R.drawable.spider,
+                fullDialogText = "Spider mites are tiny, sap-sucking pests that cause yellowing and stippling on leaves, leading to plant damage and stunted growth. They thrive in hot, dry conditions and can reproduce rapidly, making them hard to control. To prevent them, regularly spray plants with water, introduce natural predators like predatory mites, and use insecticidal soap when necessary."
+            )
+        )
+        9 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent ashy stem blight in your in plants.",
+                extraTips = "Remove Infected Leaves.",
+                imageResId = R.drawable.stem,
+                fullDialogText = "Stem blight is a fungal disease that causes wilting, yellowing, and decaying of plant stems, leading to plant death if left untreated. It thrives in warm, humid environments and spreads through infected plant debris. To prevent it, practice crop rotation, remove infected plant material, and use fungicides as needed to protect healthy plants."
+            )
+        )
+        10 -> listOf(
+            PreventiveCardData(
+                title = "Preventive Measure",
+                description = "Prevent bacterial blight in your plants.",
+                extraTips = "Remove Infected Leaves.",
+                imageResId = R.drawable.bac,
+                fullDialogText = "Bacterial blight is a plant disease that causes water-soaked lesions, wilting, and yellowing of leaves, often leading to premature plant death. It spreads through infected seeds, water, and tools, particularly in wet, humid conditions. To prevent it, use disease-free seeds, avoid overhead watering, and sanitize gardening tools regularly."
+            )
+        )
+
+        // Add more weeks with corresponding cards here...
         else -> listOf(
             PreventiveCardData(
                 title = "General Prevention",
                 description = "Learn about pest prevention and control strategies.",
                 extraTips = "Always inspect plants.\nMaintain soil health.",
-                imageResId = R.drawable.img_11,
+                imageResId = R.drawable.img_7,
                 fullDialogText = "Effective pest prevention includes inspecting crops regularly, using barriers, and maintaining clean, fertile soil.\n\nExtra Tips:\n- Practice sanitation\n- Remove affected plants quickly\n- Encourage natural predators"
             )
         )
     }
-
 
     Column(modifier = Modifier.bringIntoViewRequester(requester)) {
         Text(
@@ -129,31 +216,14 @@ fun WeekContent(
             color = Color(0xFF2E7D32)
         )
 
-        if (week == 2) {
-            Row(
+        cardDataList.forEach { cardData ->
+            PreventiveCard(
+                cardData = cardData,
+                coroutineScope = coroutineScope,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                cardDataList.forEach { cardData ->
-                    PreventiveCard(
-                        cardData = cardData,
-                        coroutineScope = coroutineScope,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-            }
-        } else {
-            cardDataList.forEach { cardData ->
-                PreventiveCard(
-                    cardData = cardData,
-                    coroutineScope = coroutineScope,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp)
-                )
-            }
+                    .padding(top = 8.dp)
+            )
         }
 
         Divider(
@@ -241,10 +311,3 @@ fun PreventiveCard(
         )
     }
 }
-
-
-
-
-
-
-

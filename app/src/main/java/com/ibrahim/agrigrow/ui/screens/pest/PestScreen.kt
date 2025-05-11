@@ -44,7 +44,7 @@ fun PestScreen(navController: NavController) {
     val sectionedPests = listOf(
         listOf(
             PestInfo("Virus", "Apple Mosaic", R.drawable.pest1, "https://www.youtube.com/watch?v=video1"),
-            PestInfo("Fungus", "Rust Disease", R.drawable.pest2, "https://www.youtube.com/watch?v=video2"),
+            PestInfo("Fungus", "Stecklenberger disease", R.drawable.pest2, "https://www.youtube.com/watch?v=video2"),
             PestInfo("Insect", "Aphids", R.drawable.pest3, "https://www.youtube.com/watch?v=video2")
         ),
         listOf(
