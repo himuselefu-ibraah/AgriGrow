@@ -45,7 +45,8 @@ fun IrrigationScreen(navController: NavController) {
         FertilizerItem(imageRes = R.drawable.irr5, description = "Furrow Irrigation: Water flows through shallow channels between crop rows."),
         FertilizerItem(imageRes = R.drawable.irr8, description = "Manual Irrigation: Traditional method using buckets or hoses."),
         FertilizerItem(imageRes = R.drawable.irr6, description = "Basin Irrigation: Involves flooding flat fields divided into basins."),
-                FertilizerItem(imageRes = R.drawable.irr2, description = "Lateral Move Irrigation: Moves across the field, distributing water evenly.")
+                FertilizerItem(imageRes = R.drawable.irr2, description = "Lateral Move Irrigation: Moves across the field, distributing water evenly."),
+                FertilizerItem(imageRes = R.drawable.micro, description = "Micro irrigation delivers water in small, precise amounts using specialized systems, improving efficiency and reducing waste.")
 
 
     )
@@ -141,7 +142,7 @@ fun IrrigationScreen(navController: NavController) {
 
                 Button(
                     onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/shorts/f-VTieMMFbk?si=Xl5x1kApUV7meXb9"))
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/Z9HAy9EYKKs?si=WkAsLdxYKNUrmVkG"))
                         context.startActivity(intent)
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),

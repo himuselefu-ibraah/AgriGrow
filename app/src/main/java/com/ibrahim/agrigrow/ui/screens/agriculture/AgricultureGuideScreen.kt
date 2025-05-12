@@ -38,16 +38,16 @@ fun AgricultureGuideScreen(navController: NavController) {
 
 
     val guideSections = listOf(
-        Triple("Soil Preparation", "Learn how to test and improve soil for maximum yield.", "https://www.youtube.com/watch?v=your_video_id_1"),
-        Triple("Planting Techniques", "Best practices for seed spacing, depth, and timing.", "https://www.youtube.com/watch?v=your_video_id_2"),
-        Triple("Irrigation", "Efficient watering methods: drip, sprinkler, and manual systems.", "https://www.youtube.com/watch?v=your_video_id_3"),
-        Triple("Weed Management", "Controlling weeds naturally and chemically.", "https://www.youtube.com/watch?v=your_video_id_4"),
-        Triple("Fertilizer Application", "Organic and inorganic fertilizer use guidelines.", "https://www.youtube.com/watch?v=your_video_id_5"),
-        Triple("Pest & Disease Control", "Identify and control common threats to crops.", "https://www.youtube.com/watch?v=your_video_id_6"),
-        Triple("Harvesting Techniques", "When and how to harvest for quality and quantity.", "https://www.youtube.com/watch?v=your_video_id_7"),
-        Triple("Post-Harvest Handling", "Storage, sorting, packaging, and preservation tips.", "https://www.youtube.com/watch?v=your_video_id_8"),
-        Triple("Organic vs. Inorganic Farming", "Differences, benefits, and which to choose.", "https://www.youtube.com/watch?v=your_video_id_9"),
-        Triple("Market Trends & Prices", "How to analyze prices and sell your produce smartly.", "https://www.youtube.com/watch?v=your_video_id_10")
+        Triple("Soil Preparation", "Learn how to test and improve soil for maximum yield.", "https://youtu.be/8ulpy_GFLDk?si=vAf5Tk4f7q8R44iB"),
+        Triple("Planting Techniques", "Best practices for seed spacing, depth, and timing.", "https://youtu.be/mgvztGVhN-E?si=wjSMixlzUHITMM3O"),
+        Triple("Irrigation", "Efficient watering methods: drip, sprinkler, and manual systems.", "https://youtu.be/Z9HAy9EYKKs?si=WkAsLdxYKNUrmVkG"),
+        Triple("Weed Management", "Controlling weeds naturally and chemically.", "https://youtu.be/QXeupnisDck?si=ks1JplcLxGinO3bC"),
+        Triple("Fertilizer Application", "Organic and inorganic fertilizer use guidelines.", "https://youtu.be/4vKNnIZWtwM"),
+        Triple("Pest & Disease Control", "Identify and control common threats to crops.", "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+        Triple("Harvesting Techniques", "When and how to harvest for quality and quantity.", "https://youtu.be/kWd_QnyO3eI?si=_VzMbGNDLcceHANd"),
+        Triple("Post-Harvest Handling", "Storage, sorting, packaging, and preservation tips.", "https://youtu.be/hAJnRAiMNuA?si=zCos6MWo9D7diHxC"),
+        Triple("Organic vs. Inorganic Farming", "Differences, benefits, and which to choose.", "https://youtu.be/8HUnW8IChv0"),
+        Triple("Market Trends & Prices", "How to analyze prices and sell your produce smartly.", "https://youtu.be/XkJ7mP7uaTQ?t=38")
     )
 
     Scaffold(
@@ -144,7 +144,7 @@ fun SectionCardWithLink(title: String, description: String, url: String, context
                 ContextCompat.startActivity(context, intent, null)
             },
 
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
                 shape = RoundedCornerShape(12.dp)
 
             ) {

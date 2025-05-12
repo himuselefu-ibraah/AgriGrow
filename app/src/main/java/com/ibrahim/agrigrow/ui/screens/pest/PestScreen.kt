@@ -43,38 +43,38 @@ fun PestScreen(navController: NavController) {
 
     val sectionedPests = listOf(
         listOf(
-            PestInfo("Virus", "Apple Mosaic", R.drawable.pest1, "https://www.youtube.com/watch?v=video1"),
-            PestInfo("Fungus", "Stecklenberger disease", R.drawable.pest2, "https://www.youtube.com/watch?v=video2"),
-            PestInfo("Insect", "Aphids", R.drawable.pest3, "https://www.youtube.com/watch?v=video2")
+            PestInfo("Virus", "Apple Mosaic", R.drawable.pest1, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Stecklenberger disease", R.drawable.pest2, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Insect", "Aphids", R.drawable.pest3, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl")
         ),
         listOf(
-            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://www.youtube.com/watch?v=video3"),
-            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Dead Arm", R.drawable.pest5, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Blossom Blight", R.drawable.pest4, "https://www.youtube.com/watch?v=video4")
+            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Dead Arm", R.drawable.pest5, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Blossom Blight", R.drawable.pest4, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl")
         ),
         listOf(
-            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://www.youtube.com/watch?v=video5"),
-            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Peach Scab", R.drawable.peach, "https://www.youtube.com/watch?v=video6")
+            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Peach Scab", R.drawable.peach, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl")
         ),
         listOf(
-            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://www.youtube.com/watch?v=video5"),
-            PestInfo("Fungus", "Blossom Blight and Fruit Rot", R.drawable.blosom, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Peach Scab", R.drawable.peach, "https://www.youtube.com/watch?v=video6"),
-            PestInfo("Fungus", "Botrytis Blight", R.drawable.bot, "https://www.youtube.com/watch?v=video7"),
-            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://www.youtube.com/watch?v=video8")
+            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Blossom Blight and Fruit Rot", R.drawable.blosom, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Plum Rust", R.drawable.pest6, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Peach Scab", R.drawable.peach, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Botrytis Blight", R.drawable.bot, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Cherry Leaf Spot", R.drawable.cherry, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl")
         ),
         listOf(
-            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://www.youtube.com/watch?v=video5"),
-            PestInfo("Fungus", "Blossom Blight and Fruit Rot", R.drawable.blosom, "https://www.youtube.com/watch?v=video4"),
-            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://www.youtube.com/watch?v=video3"),
-            PestInfo("Fungus", "Botrytis Blight", R.drawable.bot, "https://www.youtube.com/watch?v=video7"),
-            PestInfo("Fungus", "Anthracnose of Almond", R.drawable.anthracnose, "https://www.youtube.com/watch?v=video7")
+            PestInfo("Fungus", "Brown Rot", R.drawable.brown, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Blossom Blight and Fruit Rot", R.drawable.blosom, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Peach Leaf Curl", R.drawable.leafcurl, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Botrytis Blight", R.drawable.bot, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl"),
+            PestInfo("Fungus", "Anthracnose of Almond", R.drawable.anthracnose, "https://youtu.be/0D--ltYWKXI?si=b4Jo1cUQyRdW5LAl")
         )
     )
 
