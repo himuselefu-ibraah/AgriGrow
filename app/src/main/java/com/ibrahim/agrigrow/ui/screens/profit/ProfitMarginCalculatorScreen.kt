@@ -8,6 +8,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
+import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -82,7 +83,8 @@ fun ProfitMarginCalculatorScreen(navController: NavController) {
                 onValueChange = { cropName = it },
                 label = { Text("Crop Name") },
                 modifier = Modifier.fillMaxWidth(),
-                singleLine = true
+                singleLine = true,
+                shape = shape
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -94,6 +96,7 @@ fun ProfitMarginCalculatorScreen(navController: NavController) {
                 label = { Text("Cost") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
+                shape = shape,
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
             )
 
@@ -106,6 +109,7 @@ fun ProfitMarginCalculatorScreen(navController: NavController) {
                 label = { Text("Income") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
+                shape = shape,
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
             )
 
@@ -132,7 +136,8 @@ fun ProfitMarginCalculatorScreen(navController: NavController) {
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),  // For reduced rounded corners
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green)
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
+
             ) {
                 Text("Calculate", color = Color.White)
             }

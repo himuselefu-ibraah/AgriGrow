@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
+import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -77,6 +78,7 @@ fun FertilizerCalculatorScreen(navController: NavController) {
                 label = { Text("Crop Type") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
+                shape = shape
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -88,6 +90,7 @@ fun FertilizerCalculatorScreen(navController: NavController) {
                 label = { Text("Farm Size (acres)") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
+                shape = shape
             )
 
             Spacer(modifier = Modifier.height(16.dp))
