@@ -84,7 +84,7 @@ fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
             OutlinedTextField(
                 value = city,
                 onValueChange = { city = it },
-                label = { Text("Enter city",color = Color.Green) },
+                label = { Text("Enter your Location",color = Color.Green) },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 colors = OutlinedTextFieldDefaults.colors(
