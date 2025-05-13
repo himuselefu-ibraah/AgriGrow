@@ -68,9 +68,10 @@ fun HelpSupportScreen(navController: NavController) {
                         - Use the Fertilizer Guide to choose the best fertilizer for your crops.
                         - Navigate to Livestock Health to track animal well-being.
                         - Use Ask Mkulima to explore on different Agricultural Topics.
+                        - Tap on Weather updates and enter a valid Location to fetch the weather,Failed to fetch weather means the entered location is not valid or the intenet is not working.
 
                         ✉️ Contact Support:
-                        - Email: support@smartfarmassistant.com
+                        - Email: support@agrigrow.com
                         - Phone: +254 721 715 645
                         - WhatsApp: +254 721 715 645
 
